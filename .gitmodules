@@ -1,0 +1,6 @@
+[submodule "tools/tools/Convolution"]
+	path = tools/tools/Convolution
+	url = https://github.com/YarinPerez/Convolution.git
+[submodule "tools/Convolution"]
+	path = tools/Convolution
+	url = https://github.com/YarinPerez/Convolution.git
