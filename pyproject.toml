@@ -3,4 +3,9 @@ name = "customagent"
 version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.10"
-dependencies = []
+dependencies = [
+    "matplotlib>=3.10.7",
+    "mlxtend>=0.23.4",
+    "networkx>=3.4.2",
+    "pandas>=2.3.3",
+]
