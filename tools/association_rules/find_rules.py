@@ -5,15 +5,17 @@ import matplotlib.pyplot as plt
 import networkx as nx
 from mlxtend.frequent_patterns import apriori, association_rules
 
+file_path = "grocery_dataset.txt"
+
 def find_rules(num_of_antecedents, num_of_consequents):
     grocery_items = set()
-    with open("../../grocery_dataset.txt") as f:
+    with open(file_path) as f:
         reader = csv.reader(f, delimiter=",")
         for i, line in enumerate(reader):
             grocery_items.update(line)
 
     transactions = list()
-    with open("../../grocery_dataset.txt") as f:
+    with open(file_path) as f:
         reader = csv.reader(f, delimiter=",")
         for i, line in enumerate(reader):
             row_val = {item: False for item in grocery_items}
@@ -43,4 +45,5 @@ def find_rules(num_of_antecedents, num_of_consequents):
     labels = nx.get_edge_attributes(G,'weight')
     nx.draw_networkx_edge_labels(G, pos, edge_labels={k: f"{v:.2f}" for k,v in labels.items()})
     plt.title('Association Rules Network')
-    plt.show()
+    plt.savefig('association_rules_network.png', dpi=300, bbox_inches='tight')
+    plt.close()
