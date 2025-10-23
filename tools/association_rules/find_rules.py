@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import networkx as nx
 from mlxtend.frequent_patterns import apriori, association_rules
 
-def find_rules():
+def find_rules(num_of_antecedents, num_of_consequents):
     grocery_items = set()
     with open("../../grocery_dataset.txt") as f:
         reader = csv.reader(f, delimiter=",")
@@ -24,8 +24,7 @@ def find_rules():
     # frequent_itemsets = apriori(grocery, min_support=0.047, use_colnames=True)
     frequent_itemsets = apriori(grocery, min_support=0.007, use_colnames=True)
     rules = association_rules(frequent_itemsets, metric="lift", min_threshold=1.2)
-    # filtered_rules = rules[(rules["antecedents"].apply(len) == 3) & (rules["consequents"].apply(len) == 2)]
-    filtered_rules = rules[(rules["antecedents"].apply(len) == 3) & (rules["consequents"].apply(len) == 1)]
+    filtered_rules = rules[(rules["antecedents"].apply(len) == num_of_antecedents) & (rules["consequents"].apply(len) == num_of_consequents)]
     filtered_rules = filtered_rules.sort_values(by=["certainty"], ascending=[False])
 
     print(filtered_rules[["antecedents", "consequents"]].head(20))
